@@ -1,0 +1,16 @@
+# Python dependencies for VDXConvert
+# Sam Lyndon (c) 2025
+
+# Core dependencies
+vsdx>=1.5.0     # For processing .vsdx and .vsdm files
+python-pptx>=0.6.18  # Additional XML processing capabilities
+lxml>=4.9.0     # XML processing for VDX format
+Pillow>=9.0.0   # Image processing support
+
+# Optional dependencies
+colorama>=0.4.4  # For colored console output
+tqdm>=4.62.0     # For progress bars
+
+# Note: unoconv/LibreOffice is required for .vsd and .vdw files
+# This is not installable via pip and requires system installation
+# See README.md for installation instructions
