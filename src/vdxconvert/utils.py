@@ -13,7 +13,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Any
 
-from .config import SUPPORTED_EXTENSIONS, INPUT_DIR, CSV_FIELDNAMES
+from .config import SUPPORTED_EXTENSIONS, CSV_FIELDNAMES
 from .exceptions import FileOperationError
 
 

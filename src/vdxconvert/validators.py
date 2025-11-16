@@ -213,13 +213,14 @@ def sanitize_path(path_str: str, base_dir: Path) -> Path:
         Sanitized Path object
 
     Raises:
-        SecurityError: If path is unsafe
+        SecurityError: If path contains null bytes or is otherwise unsafe
     """
-    # Remove any null bytes
-    cleaned = path_str.replace('\0', '')
+    # Check for null bytes and reject immediately
+    if '\0' in path_str:
+        raise SecurityError("Path contains null bytes")
 
     # Create Path object
-    path = Path(cleaned)
+    path = Path(path_str)
 
     # Get just the filename (removes any directory components)
     safe_name = path.name

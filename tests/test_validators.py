@@ -192,7 +192,7 @@ class TestSanitizePath:
         assert result == mock_input_dir / "passwd"
 
     def test_sanitize_removes_null_bytes(self, mock_input_dir):
-        """Test that null bytes are removed."""
+        """Test that paths with null bytes are rejected."""
         with pytest.raises(SecurityError):
             sanitize_path("test\0.vsdx", mock_input_dir)
 

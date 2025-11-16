@@ -295,7 +295,7 @@ class VDXConvertCLI:
             save_csv = True
             try:
                 save_response = input(PROMPT_SAVE_CSV).strip().lower()
-                save_csv = save_response != 'n'
+                save_csv = save_response not in ('n', 'no')
             except (EOFError, KeyboardInterrupt):
                 save_csv = True
                 print()  # New line after interrupt

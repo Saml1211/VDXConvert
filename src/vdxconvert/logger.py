@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Logging configuration for VDXConvert.
@@ -8,8 +7,7 @@ with optional colored output support.
 """
 
 import logging
-from pathlib import Path
-from typing import Optional
+from typing import ClassVar, Dict, Optional
 
 from .config import LOGS_DIR, LOG_FILE_NAME, LOG_FORMAT_FILE, LOG_FORMAT_CONSOLE
 
@@ -26,7 +24,7 @@ except ImportError:
 class ColoredFormatter(logging.Formatter):
     """Custom formatter that adds colors to log levels."""
 
-    formats = {
+    formats: ClassVar[Dict[int, str]] = {
         logging.DEBUG: Fore.CYAN + '%(message)s' + Style.RESET_ALL if COLOR_SUPPORT else '%(message)s',
         logging.INFO: '%(message)s',
         logging.WARNING: Fore.YELLOW + '%(message)s' + Style.RESET_ALL if COLOR_SUPPORT else '%(message)s',

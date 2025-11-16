@@ -95,14 +95,14 @@ class TestVDXConvertCLI:
 
     @patch('src.vdxconvert.cli.validate_input_file')
     @patch('src.vdxconvert.cli.safe_move_file')
-    def test_process_file_success(self, mock_move, mock_validate,
+    def test_process_file_success(self, mock_move, _mock_validate,
                                   sample_vsdx_file, mock_output_dir, mock_archive_dir):
         """Test successful file processing."""
         cli = VDXConvertCLI()
         mock_converter = Mock()
         mock_converter.convert.return_value = True
 
-        output_file = mock_output_dir / "test.vdx"
+        _output_file = mock_output_dir / "test.vdx"
         archive_file = mock_archive_dir / "test.vsdx"
         mock_move.return_value = archive_file
 
@@ -126,7 +126,7 @@ class TestVDXConvertCLI:
         assert "Invalid file" in result['error']
 
     @patch('src.vdxconvert.cli.validate_input_file')
-    def test_process_file_no_converter(self, mock_validate, sample_vsdx_file):
+    def test_process_file_no_converter(self, _mock_validate, sample_vsdx_file):
         """Test processing when no converter available."""
         cli = VDXConvertCLI()
 
@@ -137,7 +137,7 @@ class TestVDXConvertCLI:
         assert "No converter available" in result['error']
 
     @patch('src.vdxconvert.cli.validate_input_file')
-    def test_process_file_conversion_error(self, mock_validate, sample_vsdx_file):
+    def test_process_file_conversion_error(self, _mock_validate, sample_vsdx_file):
         """Test processing with conversion error."""
         cli = VDXConvertCLI()
         mock_converter = Mock()
@@ -184,7 +184,7 @@ class TestVDXConvertCLI:
     @patch('src.vdxconvert.cli.setup_logging')
     @patch('src.vdxconvert.cli.ensure_directories_exist')
     @patch('src.vdxconvert.cli.get_visio_files')
-    def test_run_no_files(self, mock_get_files, mock_ensure_dirs, mock_logging, capsys):
+    def test_run_no_files(self, mock_get_files, _mock_ensure_dirs, _mock_logging, capsys):
         """Test run with no input files."""
         cli = VDXConvertCLI()
         mock_get_files.return_value = []
@@ -200,8 +200,8 @@ class TestVDXConvertCLI:
     @patch('src.vdxconvert.cli.ensure_directories_exist')
     @patch('src.vdxconvert.cli.get_visio_files')
     @patch('builtins.input', return_value='n')
-    def test_run_with_files(self, mock_input, mock_get_files, mock_ensure_dirs,
-                           mock_logging, sample_vsdx_file):
+    def test_run_with_files(self, _mock_input, mock_get_files, _mock_ensure_dirs,
+                            _mock_logging, sample_vsdx_file):
         """Test run with input files."""
         cli = VDXConvertCLI()
         mock_get_files.return_value = [sample_vsdx_file]

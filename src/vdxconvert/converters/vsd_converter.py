@@ -7,11 +7,9 @@ Converts .vsd and .vdw files to VDX format using LibreOffice/unoconv.
 """
 
 import logging
-import os
 import platform
 import shutil
 import subprocess
-import traceback
 from pathlib import Path
 from typing import List, Optional
 
@@ -114,7 +112,7 @@ class VSDConverter(BaseConverter):
                 # Check Windows registry
                 try:
                     import winreg
-                    with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\LibreOffice") as key:
+                    with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\LibreOffice"):
                         logger.debug("LibreOffice found in Windows registry")
                         self._has_libreoffice = True
                         return True

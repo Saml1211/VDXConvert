@@ -5,7 +5,6 @@ Tests for utils module.
 """
 
 import pytest
-from pathlib import Path
 from src.vdxconvert.utils import (
     get_visio_files,
     get_unique_filename,
