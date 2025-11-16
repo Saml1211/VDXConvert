@@ -4,42 +4,67 @@ A lightweight, cross-platform tool for batch converting Visio files to VDX forma
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![Python](https://img.shields.io/badge/python-3.8+-blue)
+![Tests](https://img.shields.io/badge/tests-90%2B-green)
+![Coverage](https://img.shields.io/badge/coverage-80%2B-green)
 
 VDXConvert is a Python utility that automates the conversion of Visio files (VSD, VSDX, VSDM, VDW) to VDX format. VDX (Visio XML Drawing) is an XML-based format that offers better interoperability with other software and version control systems.
 
+**🎉 Recently Refactored:** VDXConvert has been completely refactored with a modular architecture, comprehensive test suite, and enhanced security. See [MIGRATION.md](MIGRATION.md) for details. The CLI interface remains 100% backward compatible.
+
 ## Features
 
-- Batch processing of multiple Visio files
-- Support for various Visio formats:
+### Core Functionality
+- **Batch processing** of multiple Visio files
+- **Support for various Visio formats:**
   - `.vsdx` - Visio Drawing (XML)
   - `.vsdm` - Visio Drawing with Macros
   - `.vsd` - Visio Drawing (Binary)
   - `.vdw` - Visio Web Drawing
-- Automatic organization with input, output, and archive folders
-- Detailed logging and error handling
-- Comprehensive analysis reports
-- Cross-platform compatibility (Windows and macOS)
-- File versioning to prevent overwriting existing files
+- **Automatic organization** with input, output, and archive folders
+- **Detailed logging** and error handling
+- **Comprehensive analysis reports** (CSV export)
+- **Cross-platform** compatibility (Windows, macOS, Linux)
+- **File versioning** to prevent overwriting existing files
+
+### Professional Features (NEW ✨)
+- **🔒 Security:** Path traversal protection, file size limits, input sanitization
+- **🧪 Tested:** 90+ unit tests with >80% code coverage
+- **📝 Type-Safe:** Comprehensive type hints throughout
+- **🏗️ Modular:** Clean architecture following SOLID principles
+- **🔌 Extensible:** Easy to add new file format converters
+- **⚡ Performance:** Optimized converter selection and error handling
 
 ## Directory Structure
 
 ```
 VDXConvert/
-├── vdxconvert.py          # Main conversion script
-├── README.md              # Documentation
-├── requirements.txt       # Python dependencies
-├── input/                 # Source Visio files
-├── output/                # Converted VDX files
-├── archive/               # Successfully processed source files
-└── logs/                  # Log files and reports
+├── src/vdxconvert/        # Main package (modular architecture)
+│   ├── cli.py            # Command-line interface
+│   ├── config.py         # Configuration and constants
+│   ├── converters/       # File format converters
+│   ├── validators.py     # Input validation & security
+│   └── ...
+├── tests/                 # Comprehensive test suite (90+ tests)
+├── vdxconvert.py         # Backward compatibility wrapper
+├── pyproject.toml        # Modern Python packaging
+├── README.md             # This file
+├── MIGRATION.md          # Refactoring guide
+├── requirements.txt      # Python dependencies
+├── input/                # Source Visio files
+├── output/               # Converted VDX files
+├── archive/              # Successfully processed source files
+└── logs/                 # Log files and reports
 ```
 
 ## Requirements
 
-- Python 3.6 or higher
-- Required Python packages (installed via `pip`):
-  - `vsdx`: For processing `.vsdx` and `.vsdm` files
-  - Additional packages listed in `requirements.txt`
+- Python 3.8 or higher (3.6+ may work but not tested)
+- Required Python packages (automatically installed):
+  - `vsdx>=1.5.0`: For processing `.vsdx` and `.vsdm` files
+  - `colorama>=0.4.4`: Colored console output (optional)
+  - `tqdm>=4.62.0`: Progress bars (optional)
+  - Additional packages listed in `pyproject.toml`
 - LibreOffice (for processing `.vsd` and `.vdw` files)
 - unoconv (optional, improves conversion quality)
 
@@ -62,6 +87,10 @@ VDXConvert/
 
 3. **Install Python Dependencies:**
    ```cmd
+   # Option 1: Install as package (recommended)
+   pip install -e .
+
+   # Option 2: Install requirements only
    pip install -r requirements.txt
    ```
 
@@ -94,6 +123,10 @@ VDXConvert/
 
 3. **Install Python Dependencies:**
    ```bash
+   # Option 1: Install as package (recommended)
+   pip install -e .
+
+   # Option 2: Install requirements only
    pip install -r requirements.txt
    ```
 
